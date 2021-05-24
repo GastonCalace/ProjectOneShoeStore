@@ -39,7 +39,7 @@ class ListShoesFragment : Fragment() {
                         viewModel.addShoe(nameShoe.toString(),companyShoe.toString(),sizeShoe, descShoe.toString())
                     if (newList.isNotEmpty()) {
                         viewModel.listShoes.value?.forEach{ shoe ->
-                            binding.myLinearLayout.addLayout(shoe.size.toString(), shoe.name, shoe.company) }
+                            binding.myLinearLayout.addLayout(shoe.size.toString(), shoe.name, shoe.company, shoe.description) }
                     }
 
                 })
@@ -51,15 +51,17 @@ class ListShoesFragment : Fragment() {
         return binding.root
     }
 
-    private fun LinearLayout.addLayout(newSizeText: String, newNameText: String, newCompanyText: String) {
+    private fun LinearLayout.addLayout(newSizeText: String, newNameText: String, newCompanyText: String, newDescText: String) {
         val itemList: View = LayoutInflater.from(requireContext()).inflate(R.layout.item_list,
                 this,false)
         val sizeText = itemList.findViewById<View>(R.id.sizeShoeText) as TextView
         val nameText = itemList.findViewById<View>(R.id.nameShoeText) as TextView
         val companyText = itemList.findViewById<View>(R.id.companyShoeText) as TextView
+        val descText = itemList.findViewById<View>(R.id.descShoeText) as TextView
         sizeText.text = newSizeText.toString()
         nameText.text = newNameText
         companyText.text = newCompanyText
+        descText.text = newDescText
         this.addView(itemList)
     }
 
