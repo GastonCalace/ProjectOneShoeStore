@@ -30,7 +30,8 @@
         tools:layout="@layout/instructions_fragment" >
         <action
             android:id="@+id/action_instructionsFragment_to_listShoesFragment"
-            app:destination="@id/listShoesFragment" />
+            app:destination="@id/listShoesFragment"
+            app:popUpTo="@id/loginFragment" />
     </fragment>
     <fragment
         android:id="@+id/listShoesFragment"
@@ -39,25 +40,6 @@
         <action
             android:id="@+id/action_listShoesFragment_to_detailsFragment"
             app:destination="@id/detailsFragment" />
-        <argument
-            android:name="nameShoe"
-            app:argType="string"
-            app:nullable="true"
-            android:defaultValue="@null" />
-        <argument
-            android:name="companyShoe"
-            app:argType="string"
-            app:nullable="true"
-            android:defaultValue="@null" />
-        <argument
-            android:name="sizeShoe"
-            app:argType="integer"
-            android:defaultValue="-1" />
-        <argument
-            android:name="descShoe"
-            app:argType="string"
-            app:nullable="true"
-            android:defaultValue="@null" />
     </fragment>
     <fragment
         android:id="@+id/detailsFragment"

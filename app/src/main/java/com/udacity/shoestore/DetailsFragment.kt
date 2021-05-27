@@ -9,7 +9,6 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
-import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
 import com.udacity.shoestore.databinding.DetailsFragmentBinding
 
@@ -43,12 +42,8 @@ class DetailsFragment: Fragment() {
         binding.editNameShoe.addTextChangedListener(newShoeDetails)
 
         binding.addShoeButton.setOnClickListener {
-            view?.findNavController()?.navigate(DetailsFragmentDirections.actionDetailsFragmentToListShoesFragment(
-                    binding.editNameShoe.text.toString(), binding.editCompanyShoe.text.toString(),
-                    binding.editSizeShoe.text.toString().toInt(), binding.editDescriptionShoe.text.toString()))
-        }
-
-        binding.cancelButton.setOnClickListener {
+            viewModel.addNewShoe(binding.editNameShoe.text.toString(), binding.editCompanyShoe.text.toString(),
+                binding.editSizeShoe.text.toString().toInt(), binding.editDescriptionShoe.text.toString())
             view?.findNavController()?.navigate(DetailsFragmentDirections.actionDetailsFragmentToListShoesFragment())
         }
 

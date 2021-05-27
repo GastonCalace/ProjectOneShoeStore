@@ -2,13 +2,7 @@
 <layout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical">
-<!--    <data>-->
-<!--        <variable-->
-<!--            name="viewModel"-->
-<!--            type="com.udacity.shoestore.ListShoesFragment" />-->
-<!--    </data>-->
 
 
 <androidx.coordinatorlayout.widget.CoordinatorLayout
@@ -32,6 +26,7 @@
         android:layout_height="match_parent"
         android:backgroundTint="@color/colorPrimary">
 
+<!--    Here we use a LinearLayout because we are going to show a list so its better for it-->
         <LinearLayout
             android:id="@+id/myLinearLayout"
             android:layout_width="match_parent"
