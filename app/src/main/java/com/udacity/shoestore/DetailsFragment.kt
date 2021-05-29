@@ -6,15 +6,26 @@ import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.LinearLayout
+import androidx.activity.ComponentActivity
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
+import androidx.fragment.app.FragmentTransaction
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.findNavController
+import androidx.navigation.fragment.FragmentNavigator
+import androidx.navigation.fragment.FragmentNavigatorDestinationBuilder
+import androidx.navigation.fragment.findNavController
+import androidx.navigation.ui.NavigationUI
 import com.udacity.shoestore.databinding.DetailsFragmentBinding
+import com.udacity.shoestore.models.Shoe
+import kotlinx.android.synthetic.main.item_list.view.*
 
 class DetailsFragment: Fragment() {
 
     private val viewModel: ListShoesViewModel by activityViewModels()
+    private val newShoe: Shoe = Shoe("", "", "", "")
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
@@ -22,6 +33,7 @@ class DetailsFragment: Fragment() {
         val binding: DetailsFragmentBinding = DataBindingUtil.inflate(
                 inflater, R.layout.details_fragment, container, false)
 
+        binding.newShoe = newShoe
 
         var newShoeDetails = object : TextWatcher{
             override fun afterTextChanged(s: Editable?) {
@@ -42,9 +54,18 @@ class DetailsFragment: Fragment() {
         binding.editNameShoe.addTextChangedListener(newShoeDetails)
 
         binding.addShoeButton.setOnClickListener {
-            viewModel.addNewShoe(binding.editNameShoe.text.toString(), binding.editCompanyShoe.text.toString(),
-                binding.editSizeShoe.text.toString().toInt(), binding.editDescriptionShoe.text.toString())
-            view?.findNavController()?.navigate(DetailsFragmentDirections.actionDetailsFragmentToListShoesFragment())
+            binding.apply {
+                newShoe?.name = editNameShoe.text.toString()
+                newShoe?.company = editCompanyShoe.text.toString()
+                newShoe?.size = editSizeShoe.text.toString()
+                newShoe?.name = editDescriptionShoe.text.toString()
+            }
+            viewModel.addNewShoe(newShoe)
+            view?.findNavController()?.popBackStack()
+        }
+
+        binding.cancelButton.setOnClickListener {
+            view?.findNavController()?.popBackStack()
         }
 
         return binding.root

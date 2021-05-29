@@ -3,12 +3,13 @@ package com.udacity.shoestore
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.LinearLayout
-import android.widget.TextView
-import androidx.core.content.ContentProviderCompat.requireContext
+import androidx.databinding.*
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.udacity.shoestore.databinding.ItemListBinding
 import com.udacity.shoestore.models.Shoe
+import kotlinx.android.synthetic.main.item_list.view.*
 
 class ListShoesViewModel :ViewModel() {
 
@@ -17,30 +18,23 @@ class ListShoesViewModel :ViewModel() {
     val listShoes: LiveData<MutableList<Shoe>>
         get() = _listShoes
 
+    fun addNewShoe(newShoe: Shoe) { _listShoes.value?.add(newShoe) }
 
-    fun addNewShoe(name: String, company: String, size: Int, description: String) {
-        _listShoes.value?.add(Shoe(name, size.toString().toDouble(),
-            company, description)
-        )
+    fun listingItems(layout: LinearLayout, list: LiveData<MutableList<Shoe>>) {
+        list.value?.forEach{ shoe ->
+            layout.addLayout(shoe) }
     }
 
-    fun listingItems(layout: LinearLayout) {
-        listShoes.value?.forEach{ shoe ->
-            layout.addLayout(shoe.size.toString(), shoe.name, shoe.company, shoe.description) }
-    }
-
-    private fun LinearLayout.addLayout(newSizeText: String, newNameText: String, newCompanyText: String, newDescText: String) {
+    private fun LinearLayout.addLayout(shoe: Shoe) {
         val itemList: View = LayoutInflater.from(context).inflate(
-            R.layout.item_list,
-            this,false)
-        val sizeText = itemList.findViewById<View>(R.id.sizeShoeText) as TextView
-        val nameText = itemList.findViewById<View>(R.id.nameShoeText) as TextView
-        val companyText = itemList.findViewById<View>(R.id.companyShoeText) as TextView
-        val descText = itemList.findViewById<View>(R.id.descShoeText) as TextView
-        sizeText.text = newSizeText.toString()
-        nameText.text = newNameText
-        companyText.text = newCompanyText
-        descText.text = newDescText
+                R.layout.item_list,
+                this,false)
+
+        itemList.sizeShoeText.text = shoe.size.toString()
+        itemList.nameShoeText.text = shoe.name
+        itemList.companyShoeText.text = shoe.company
+        itemList.descShoeText.text = shoe.description
+
         this.addView(itemList)
     }
 

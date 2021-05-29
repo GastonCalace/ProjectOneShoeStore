@@ -23,9 +23,9 @@ class ListShoesFragment : Fragment() {
 
         setHasOptionsMenu(true)
 
-        viewModel.listingItems(binding.myLinearLayout)
+        viewModel.listingItems(binding.myLinearLayout, viewModel.listShoes)
 
-       binding.detailButton.setOnClickListener() {
+        binding.detailButton.setOnClickListener() {
            view?.findNavController()?.navigate(ListShoesFragmentDirections.actionListShoesFragmentToDetailsFragment())
         }
 
