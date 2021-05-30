@@ -54,12 +54,6 @@ class DetailsFragment: Fragment() {
         binding.editNameShoe.addTextChangedListener(newShoeDetails)
 
         binding.addShoeButton.setOnClickListener {
-            binding.apply {
-                newShoe?.name = editNameShoe.text.toString()
-                newShoe?.company = editCompanyShoe.text.toString()
-                newShoe?.size = editSizeShoe.text.toString()
-                newShoe?.name = editDescriptionShoe.text.toString()
-            }
             viewModel.addNewShoe(newShoe)
             view?.findNavController()?.popBackStack()
         }

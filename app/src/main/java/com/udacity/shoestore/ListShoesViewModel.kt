@@ -10,6 +10,7 @@ import androidx.lifecycle.ViewModel
 import com.udacity.shoestore.databinding.ItemListBinding
 import com.udacity.shoestore.models.Shoe
 import kotlinx.android.synthetic.main.item_list.view.*
+import kotlinx.android.synthetic.main.list_shoes_fragment.view.*
 
 class ListShoesViewModel :ViewModel() {
 

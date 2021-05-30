@@ -2,6 +2,11 @@
 <layout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
+    <data>
+        <variable
+            name="newShoe"
+            type="com.udacity.shoestore.models.Shoe" />
+    </data>
 
     <!--Here's a ConstraintLayout because it can suit better due to the items that it has-->
     <!--and its more flexible for his purpose-->
@@ -16,7 +21,7 @@
             android:layout_marginStart="8dp"
             android:layout_marginTop="16dp"
             android:layout_marginBottom="8dp"
-            android:text="TextView"
+            android:text="@{newShoe.size}"
             android:textAlignment="textEnd"
             android:textColor="@android:color/black"
             android:textSize="48sp"
@@ -31,7 +36,7 @@
             android:layout_marginStart="8dp"
             android:layout_marginTop="16dp"
             android:layout_marginEnd="16dp"
-            android:text="TextView"
+            android:text="@{newShoe.name}"
             android:textColor="@android:color/black"
             android:textSize="18sp"
             app:layout_constraintBottom_toTopOf="@+id/companyShoeText"
@@ -45,7 +50,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginEnd="16dp"
-            android:text="TextView"
+            android:text="@{newShoe.company}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/sizeShoeText"
             app:layout_constraintTop_toBottomOf="@+id/nameShoeText" />
@@ -56,7 +61,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginEnd="16dp"
-            android:text="TextView"
+            android:text="@{newShoe.description}"
             android:textSize="12sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/sizeShoeText"
