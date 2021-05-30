@@ -2,6 +2,11 @@
 <layout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
+    <data>
+        <variable
+            name="login"
+            type="com.udacity.shoestore.models.Login" />
+    </data>
 
     <!--    Here's a ConstraintLayout because it can suit better due to the items that it has-->
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -27,9 +32,10 @@
             android:layout_marginStart="8dp"
             android:layout_marginEnd="24dp"
             android:ems="10"
+            android:hint="Username"
             android:inputType="textPersonName"
-            android:text="Username"
-            android:textColor="@android:color/darker_gray"
+            android:text="@={login.username}"
+            android:textColor="@android:color/black"
             app:layout_constraintBaseline_toBaselineOf="@+id/usernameText"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/usernameText" />
@@ -53,9 +59,10 @@
             android:layout_marginStart="8dp"
             android:layout_marginEnd="24dp"
             android:ems="10"
+            android:hint="Password"
             android:inputType="textPersonName"
-            android:text="Password"
-            android:textColor="@android:color/darker_gray"
+            android:text="@={login.password}"
+            android:textColor="@android:color/black"
             android:textSize="18sp"
             app:layout_constraintBaseline_toBaselineOf="@+id/passwordText"
             app:layout_constraintEnd_toEndOf="parent"

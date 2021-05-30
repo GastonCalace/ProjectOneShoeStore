@@ -8,8 +8,11 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.navigation.Navigation
 import com.udacity.shoestore.databinding.LoginFragmentBinding
+import com.udacity.shoestore.models.Login
 
 class LoginFragment : Fragment() {
+
+    private var login = Login()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -20,6 +23,9 @@ class LoginFragment : Fragment() {
         binding.loginButton.setOnClickListener(
             Navigation.createNavigateOnClickListener(R.id.action_loginFragment_to_welcomeScreen)
         )
+
+        binding.login = login
+
         binding.signInButton.setOnClickListener(
             Navigation.createNavigateOnClickListener(R.id.action_loginFragment_to_welcomeScreen)
         )
